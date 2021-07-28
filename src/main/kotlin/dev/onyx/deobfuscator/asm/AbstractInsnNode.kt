@@ -1,10 +1,7 @@
 package dev.onyx.deobfuscator.asm
 
 import org.objectweb.asm.Opcodes.*
-import org.objectweb.asm.tree.AbstractInsnNode
-import org.objectweb.asm.tree.IntInsnNode
-import org.objectweb.asm.tree.JumpInsnNode
-import org.objectweb.asm.tree.LdcInsnNode
+import org.objectweb.asm.tree.*
 
 fun AbstractInsnNode.isIf(): Boolean {
     return this is JumpInsnNode && opcode != GOTO
@@ -27,4 +24,16 @@ val AbstractInsnNode.pushedInt: Int get() = when {
     opcode == BIPUSH || opcode == SIPUSH -> (this as IntInsnNode).operand
     this is LdcInsnNode && cst is Int -> cst as Int
     else -> throw IllegalStateException()
+}
+
+fun loadInt(n: Int): AbstractInsnNode = when (n) {
+    in -1..5 -> InsnNode(n + 3)
+    in Byte.MIN_VALUE..Byte.MAX_VALUE -> IntInsnNode(BIPUSH, n)
+    in Short.MIN_VALUE..Short.MAX_VALUE -> IntInsnNode(SIPUSH, n)
+    else -> LdcInsnNode(n)
+}
+
+fun loadLong(n: Long): AbstractInsnNode = when (n) {
+    0L, 1L -> InsnNode((n + 9).toInt())
+    else -> LdcInsnNode(n)
 }

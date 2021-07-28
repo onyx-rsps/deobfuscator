@@ -23,6 +23,7 @@ dependencies {
     implementation("com.github.ajalt.clikt:clikt:_")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:_")
     implementation("com.google.guava:guava:_")
+    implementation("org.jgrapht:jgrapht-core:_")
 }
 
 tasks.withType<Wrapper> {

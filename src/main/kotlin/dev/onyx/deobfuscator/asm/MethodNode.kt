@@ -10,7 +10,7 @@ var MethodNode.owner: ClassNode by mixin()
 
 val MethodNode.pool: ClassPool get() = this.owner.pool
 val MethodNode.type: Type get() = Type.getMethodType(this.desc)
-val MethodNode.identifier: String get() = "${this.owner}.${this.name}${this.desc}"
+val MethodNode.identifier: String get() = "${this.owner.identifier}.${this.name}${this.desc}"
 
 val MethodNode.returnType: Type get() = this.type.returnType
 val MethodNode.argumentTypes: List<Type> get() = this.type.argumentTypes.toList()

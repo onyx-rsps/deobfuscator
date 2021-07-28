@@ -21,6 +21,7 @@ class Deobfuscator(val context: DeobfuscatorContext) {
         /*
          * Register transformers.
          */
+        register<FieldInliner>()
         register<RuntimeExceptionRemover>()
         register<DeadCodeRemover>()
         register<ControlFlowOptimizer>()
@@ -28,6 +29,13 @@ class Deobfuscator(val context: DeobfuscatorContext) {
         register<UnusedFieldRemover>()
         register<IllegalConstructorRemover>()
         register<UnusedMethodRemover>()
+        register<Renamer>()
+        register<OpaquePredicateArgumentRemover>()
+        register<RedundantGotoRemover>()
+        register<StackFrameRebuilder>()
+        register<EuclideanMultipliersRemover>()
+        register<FieldSorter>()
+        register<MethodSorter>()
 
         Logger.info("Registered ${transformers.size} bytecode transformers.")
     }

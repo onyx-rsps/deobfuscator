@@ -32,6 +32,8 @@ class ClassPool private constructor() {
         classMap.remove(cls.name)
     }
 
+    fun clear() = classMap.clear()
+
     fun toList(): List<ClassNode> = classMap.values.toList()
 
     fun forEach(action: (ClassNode) -> Unit) = toList().forEach(action)

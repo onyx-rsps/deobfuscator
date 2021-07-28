@@ -10,7 +10,7 @@ var FieldNode.owner: ClassNode by mixin()
 
 val FieldNode.pool: ClassPool get() = this.owner.pool
 val FieldNode.type: Type get() = Type.getType(this.desc)
-val FieldNode.identifier: String get() = "${this.owner}.${this.name}"
+val FieldNode.identifier: String get() = "${this.owner.identifier}.${this.name}"
 
 internal fun FieldNode.init(owner: ClassNode) {
     this.owner = owner
