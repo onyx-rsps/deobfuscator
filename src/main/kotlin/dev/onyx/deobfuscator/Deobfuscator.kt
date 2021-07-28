@@ -21,6 +21,7 @@ class Deobfuscator(val context: DeobfuscatorContext) {
         /*
          * Register transformers.
          */
+        register<Renamer>()
         register<FieldInliner>()
         register<RuntimeExceptionRemover>()
         register<DeadCodeRemover>()
@@ -29,7 +30,6 @@ class Deobfuscator(val context: DeobfuscatorContext) {
         register<UnusedFieldRemover>()
         register<IllegalConstructorRemover>()
         register<UnusedMethodRemover>()
-        register<Renamer>()
         register<OpaquePredicateArgumentRemover>()
         register<RedundantGotoRemover>()
         register<StackFrameRebuilder>()
